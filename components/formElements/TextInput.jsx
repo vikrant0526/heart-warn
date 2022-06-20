@@ -1,12 +1,12 @@
-function TextInput({ name, id, onChange, value, placeholder, label, type }) {
+function TextInput({ name, id, onChange, value, placeholder, label, type, className }) {
   return (
-    <div className="flex flex-1 flex-col ">
-      <label htmlFor={name} className="m-1 font-semibold text-sm">
+    <div className={`flex flex-1 flex-col mb-2 ${className}`}>
+      <label htmlFor={id} className="m-1 font-semibold">
         {label}
       </label>
       <input
         type={type}
-        className="p-3 rounded-lg font-semibold focus:outline-none border-b-2 border-green-500"
+        className="p-2 rounded-lg font-semibold focus:outline-none border-2 border-green-500"
         name={name}
         id={id}
         onChange={onChange}

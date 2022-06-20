@@ -1,10 +1,11 @@
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+
 import Card from "../components/Card";
 import CustomHead from "../components/CustomHead";
-import Button from "../components/formElements/Button";
 import Loader from "../components/Loader";
+import PersonalInfoForm from "../components/forms/PersonalInfoFrom";
 
 const Home = () => {
   const { status } = useSession();
@@ -27,9 +28,11 @@ const Home = () => {
     <>
       <CustomHead />
       <div className="bg-main flex flex-1 h-screen justify-center items-center p-4">
-        <Card>
-          Home
-          <Button onClick={signOut} />
+        <Card className="justify-center items-center py-10">
+          <div className="flex flex-col md:flex-row justify-center items-center m-4">
+            <h2 className="text-3xl md:text-5xl font-bold m-2 ml-4">Personal Information</h2>
+          </div>
+          <PersonalInfoForm />
         </Card>
       </div>
     </>
