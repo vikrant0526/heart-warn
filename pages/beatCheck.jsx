@@ -23,7 +23,7 @@ const BeatCheck = () => {
     <>
       <CustomHead />
       <div className="bg-main flex flex-col flex-1 h-screen justify-center items-center p-20 gap-4">
-        <div className="flex gap-4">
+        <div className="flex gap-4 w-full">
           <Card className="flex justify-center items-center py-10 h-full w-full">
             <div className="flex flex-1 flex-col justify-center items-center w-full">
               <h3 className={`beat-text ${alertMode}`}>{message}</h3>
