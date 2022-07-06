@@ -24,15 +24,15 @@
     @apply text-3xl text-center;
   }
 
-  .beat-text.safe {
+  .safe {
     @apply text-green-500;
   }
 
-  .beat-text.warning {
+  .warning {
     @apply text-orange-400 text-5xl;
   }
 
-  .beat-text.danger {
+  .danger {
     @apply text-red-500 text-6xl;
   }
 

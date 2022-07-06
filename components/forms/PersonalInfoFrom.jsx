@@ -7,6 +7,7 @@ import TextInput from "../formElements/TextInput";
 import Seperator from "../Seperator";
 import Loader from "../Loader";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 function PersonalInfoForm() {
   const { data: userData, status: userDataStatus } = useSession();
@@ -15,12 +16,23 @@ function PersonalInfoForm() {
   const [gender, setGender] = useState(null);
   const [activity, setActivity] = useState(null);
 
+  const router = useRouter();
+
   const submitHandler = (e) => {
     e.preventDefault();
+
+    if (!height) return alert("Please provide your height");
+    if (!weight) return alert("Please provide your weight");
+    if (!gender) return alert("Please provide your gender");
+    if (!activity) return alert("Please provide your activity");
+
     const requestBody = { personalInformation: { height, weight, gender, activity } };
     axios
       .patch(`/api/users/${userData.id}`, requestBody)
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        router.push("/beatCheck");
+      })
       .catch((error) => console.log(error));
   };
 

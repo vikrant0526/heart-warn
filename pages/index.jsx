@@ -15,9 +15,9 @@ const Home = () => {
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/login");
-    } else if (userData) {
-      if (userData.height && userData.weight && userData.gender && userData.activity)
-        router.push("/beatCheck");
+      // } else if (userData) {
+      //   if (userData.height && userData.weight && userData.gender && userData.activity)
+      //     router.push("/beatCheck");
     } else if (status !== "loading") {
       setLoading(false);
     }
