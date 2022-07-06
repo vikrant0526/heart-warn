@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -11,6 +11,8 @@ const Home = () => {
   const { status } = useSession();
   const [loading, setLoading] = useState(status === "loading");
   const router = useRouter();
+
+  // signOut();
 
   useEffect(() => {
     if (status === "unauthenticated") router.push("/login");
