@@ -1,4 +1,4 @@
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -8,16 +8,20 @@ import Loader from "../components/Loader";
 import PersonalInfoForm from "../components/forms/PersonalInfoFrom";
 
 const Home = () => {
-  const { status } = useSession();
+  const { status, data: userData } = useSession();
   const [loading, setLoading] = useState(status === "loading");
   const router = useRouter();
 
-  // signOut();
-
   useEffect(() => {
-    if (status === "unauthenticated") router.push("/login");
-    else if (status !== "loading") setLoading(false);
-  }, [status, router]);
+    if (status === "unauthenticated") {
+      router.push("/login");
+    } else if (userData) {
+      if (userData.height && userData.weight && userData.gender && userData.activity)
+        router.push("/beatCheck");
+    } else if (status !== "loading") {
+      setLoading(false);
+    }
+  }, [status, router, userData]);
 
   if (loading)
     return (
@@ -40,4 +44,5 @@ const Home = () => {
     </>
   );
 };
+
 export default Home;
