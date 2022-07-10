@@ -21,7 +21,7 @@ const BeatCheck = ({ simualtions }) => {
   useEffect(() => {
     let timeOut;
     if (i < 120) {
-      timeOut = setTimeout(() => setI((i) => i + 1), 1000);
+      timeOut = setTimeout(() => setI((i) => i + 1), 500);
       if (selectedSimulation)
         if (selectedSimulation[i] < 60 || selectedSimulation[i] > 110) setAlertMode("danger");
         else if (selectedSimulation[i] < 80 || selectedSimulation[i] > 100) setAlertMode("warning");
@@ -38,10 +38,12 @@ const BeatCheck = ({ simualtions }) => {
     <>
       <CustomHead />
       <div className="bg-main flex flex-col flex-1 h-screen justify-center items-center p-20 gap-4">
-        <div className="flex gap-4 w-full">
+        <Card className="flex justify-center items-center py-10 w-full">
+          <h3 className={`beat-text ${alertMode}`}>{message}</h3>
+        </Card>
+        <div className="flex gap-4 w-full h-full">
           <Card className="flex justify-center items-center py-10 h-full w-full">
             <div className="flex flex-1 flex-col justify-center items-center w-full">
-              <h3 className={`beat-text ${alertMode}`}>{message}</h3>
               <div className="flex flex-1 items-end my-10">
                 <Bar alertMode={alertMode} />
               </div>
@@ -49,7 +51,6 @@ const BeatCheck = ({ simualtions }) => {
           </Card>
           <Card className="flex justify-center items-center py-10 h-full w-full">
             <div className="flex flex-1 flex-col justify-center items-center w-full">
-              <h3 className={`beat-text ${alertMode}`}>{message}</h3>
               <div className="flex flex-1 items-end my-10">
                 <Beat height={500} width={500} alertMode={alertMode} />
               </div>
@@ -57,8 +58,15 @@ const BeatCheck = ({ simualtions }) => {
           </Card>
         </div>
         <Card className="flex w-full">
-          <h3 className={`text-6xl text-center mb-6 ${alertMode}`}>
-            {selectedSimulation === null ? "Select a Simulation to run" : selectedSimulation[i]}
+          <h3 className={`flex text-6xl text-center mb-6 ${alertMode}`}>
+            <span className="flex flex-1 justify-center">
+              {selectedSimulation === null
+                ? "Select a Simulation to run"
+                : "BPMs: " + selectedSimulation[i]}
+            </span>
+            <span className="flex flex-1 justify-center">
+              {selectedSimulation === null ? null : "Time: " + Math.floor(i / 2) + "s"}
+            </span>
           </h3>
           <div className="flex flex-row w-full">
             <Button
